@@ -20,27 +20,35 @@ provider "aws" {
     region = "us-east-1"
 }
 
-resource "aws_s3_bucket" "main_s3_bucket" {
+resource "aws_s3_bucket_website_configuration" "main_s3_bucket" {
     bucket = "${var.s3_resource_name}"
-    acl = "public-read"
-    policy = <<-EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "allow-showing-site",
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "*"
-            },
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::${var.s3_resource_name}/*"
-        }
-    ]
-}
-    EOF
 
-    website {
-        index_document = "index.html"
+    index_document {
+        suffix = "index.html"
     }
 }
+
+# resource "aws_s3_bucket" "main_s3_bucket" {
+#     bucket = "${var.s3_resource_name}"
+#     acl = "public-read"
+#     policy = <<-EOF
+# {
+#     "Version": "2012-10-17",
+#     "Statement": [
+#         {
+#             "Sid": "allow-showing-site",
+#             "Effect": "Allow",
+#             "Principal": {
+#                 "AWS": "*"
+#             },
+#             "Action": "s3:GetObject",
+#             "Resource": "arn:aws:s3:::${var.s3_resource_name}/*"
+#         }
+#     ]
+# }
+#     EOF
+
+#     website {
+#         index_document = "index.html"
+#     }
+# }
