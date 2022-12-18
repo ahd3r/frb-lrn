@@ -20,7 +20,7 @@ provider "aws" {
     region = "us-east-1"
 }
 
-resource "aws_s3_bucket" "$${var.s3_resource_name}" {
+resource "aws_s3_bucket" "main_s3_bucket" {
     bucket = "${var.s3_resource_name}"
     acl = "public-read"
     policy = <<-EOF
