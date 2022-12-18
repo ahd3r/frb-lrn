@@ -8,6 +8,7 @@
 </head>
 <body>
   <p>Hi!</p>
+  <button id="sg">click</button>
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
@@ -28,8 +29,32 @@
     };
   
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
+    const firebase = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
+    document.querySelector('#sg').addEventListener('click', () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          console.log(result);
+          var credential = result.credential;
+          var token = credential.accessToken;
+          var user = result.user;
+          console.log(credential);
+          console.log(token);
+          console.log(user);
+        }).catch((error) => {
+          console.log(error);
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+          console.log(errorCode);
+          console.log(errorMessage);
+          console.log(email);
+          console.log(credential);
+        });
+    });
   </script>
 </body>
 </html>
