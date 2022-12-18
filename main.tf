@@ -1,11 +1,11 @@
 variable "aws_access_key" {
-  description = "AWS access key"
-  type = string
+    description = "AWS access key"
+    type = string
 }
 
 variable "aws_secret_key" {
-  description = "AWS secret key"
-  type = string
+    description = "AWS secret key"
+    type = string
 }
 
 provider "aws" {
@@ -23,11 +23,26 @@ provider "aws" {
 # }
 
 resource "aws_s3_bucket" "firebase-static-gd548241h52s5" {
-  bucket = "${aws_s3_bucket.name}"
-#   acl = "public-read"
-#   policy = file("policy.json")
+    bucket = "firebase-static-gd548241h52s5"
+    acl = "public-read"
+    policy = <<-EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "allow-showing-site",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::{bucket-name}/*"
+        }
+    ]
+}
+    EOF
 
-#   website {
-#     index_document = "index.html"
-#   }
+    website {
+        index_document = "index.html"
+    }
 }
