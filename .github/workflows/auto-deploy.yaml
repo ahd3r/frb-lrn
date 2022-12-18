@@ -18,4 +18,4 @@ jobs:
       - uses: hashicorp/setup-terraform@v2
       - run: terraform init
       - run: terraform apply -auto-approve -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-      - run: aws s3 cp index.html s3://firebase-static-firebase-static-222gd548241h52s5
+      - run: aws s3 cp index.html s3://firebase-static-222gd548241h52s5
