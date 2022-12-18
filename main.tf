@@ -4,6 +4,20 @@ provider "aws" {
     region = "us-east-1"
 }
 
-# resource "aws_s3_bucket" "firebase-test-static-ghskfpkfk244fs" {
-#     bucket = "${}"
+# resource "aws_s3_bucket_website_configuration" "example" {
+#   bucket = aws_s3_bucket.example.bucket
+
+#   index_document {
+#     suffix = "index.html"
+#   }
 # }
+
+resource "aws_s3_bucket" "firebase-static-gd548241h52s5" {
+  bucket = "${aws_s3_bucket.name}"
+#   acl = "public-read"
+#   policy = file("policy.json")
+
+#   website {
+#     index_document = "index.html"
+#   }
+}
