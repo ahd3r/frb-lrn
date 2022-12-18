@@ -36,7 +36,7 @@ resource "aws_s3_bucket" "firebase-static-gd548241h52s5" {
                 "AWS": "*"
             },
             "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::{bucket-name}/*"
+            "Resource": "arn:aws:s3:::firebase-static-gd548241h52s5/*"
         }
     ]
 }
